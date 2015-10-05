@@ -1,0 +1,30 @@
+// 13 All the primes up to 1000
+//
+// Outputs all prime numbers up to 1000.
+//
+
+println("All the prime numbers up to 1000:");
+
+// print the numbers
+for (int i = 0; i <= 1000; i++) {
+	if (isPrime(i)) {
+		print(i + " ");
+	}
+}
+
+// helper method to check if a number if prime
+boolean isPrime(int value) {
+	if (value > 1) {
+		// to determine if a number is prime we only need to check up to the square
+		// root of the value (faster computation time for large numbers)
+		// note: if the value is 2 the code doesn't enter the loop but that's ok
+		// because the method will return true
+		for (int i = 2; i <= Math.sqrt(value); i++) {
+			if ((value % i) == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
