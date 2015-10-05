@@ -1,9 +1,9 @@
 // 14 Up to 1000 primes
 //
-// Outputs the first 100 primes.
+// Outputs the first 1000 primes.
 //
 
-println("The first 100 primes:");
+println("The first 1000 primes:");
 
 // print the numbers
 int count = 0;
@@ -11,14 +11,17 @@ int prime = 0;
 
 while (count < 1000) {
 	// loop until we find a prime
-	do {
+	while (!isPrime(prime)) {
 		prime++;
-	} while (!isPrime(prime));
+	}
 	
 	count++;
 	
 	print(count + ": ");
 	println(prime + " ");
+	
+	// next prime
+	prime++;
 }
 
 // helper method to check if a number if prime
