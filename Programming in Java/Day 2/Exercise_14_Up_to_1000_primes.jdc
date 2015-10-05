@@ -1,0 +1,39 @@
+// 14 Up to 1000 primes
+//
+// Outputs the first 100 primes.
+//
+
+println("The first 100 primes:");
+
+// print the numbers
+int count = 0;
+int prime = 0;
+
+while (count < 1000) {
+	// loop until we find a prime
+	do {
+		prime++;
+	} while (!isPrime(prime));
+	
+	count++;
+	
+	print(count + ": ");
+	println(prime + " ");
+}
+
+// helper method to check if a number if prime
+boolean isPrime(int value) {
+	if (value > 1) {
+		// to determine if a number is prime we only need to check up to the square
+		// root of the value (faster computation time for large numbers)
+		// note: if the value is 2 the code doesn't enter the loop but that's ok
+		// because the method will return true
+		for (int i = 2; i <= Math.sqrt(value); i++) {
+			if ((value % i) == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
