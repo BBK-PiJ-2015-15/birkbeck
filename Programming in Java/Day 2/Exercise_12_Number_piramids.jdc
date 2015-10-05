@@ -1,0 +1,21 @@
+// 12 Number piramids
+//
+// Outputs a piramid of numbers.
+//
+
+// ask the user to enter the height of the piramid
+print("What's the height of the piramid?");
+int height = readInt();
+
+// print the piramid
+printPiramid(height);
+
+// helper method to the the actual printing
+void printPiramid(int height) {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < (i + 1); j++) {
+			print(i + 1);
+		}
+		println("");
+	}
+}
