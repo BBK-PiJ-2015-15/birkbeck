@@ -1,0 +1,30 @@
+// 15 Guess my number
+//
+// Let's the user guess a number randomly selected between 0 and 1000.
+//
+
+println("Try to guess my number!");
+
+// generate a number
+int number = (int)Math.abs(1000.0f * Math.random());
+int guesses = 0;
+
+while(true) {
+    // ask the user to enter a guess
+    print("Tell me a number: ");
+    int guess = readInt();
+
+    // increment guess
+    guesses++;
+
+    // validate guess
+    if (guess < number) {
+        println("No! My number is higher.");
+    } else if (guess > number) {
+        println("No! My number is lower.");
+    } else {
+        println("CORRECT!");
+        println("You needed " + guesses + " guesses.");
+        break;
+    }
+}
