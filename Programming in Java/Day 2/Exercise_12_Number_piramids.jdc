@@ -4,7 +4,7 @@
 //
 
 // ask the user to enter the height of the piramid
-print("What's the height of the piramid?");
+print("What's the height of the piramid? ");
 int height = readInt();
 
 // print the piramid
