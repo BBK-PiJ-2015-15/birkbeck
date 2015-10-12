@@ -1,0 +1,72 @@
+// 17 Optimus Prime
+//
+// Outputs the closest prime number(s).
+//
+
+// ask the user for a number
+int value;
+
+while(true) {
+    print("Enter a number: ");
+    value = readInt();
+
+    // validate input
+    if (value > 0) {
+        break;
+    }
+
+    // invalid number, retry
+    println("Error: please enter a number bigger than 0.");
+}
+
+// search for the first prime less than the value
+int prime_less = -1;
+
+for (int i = value - 1; i > 0; i--) {
+    if (isPrime(i)) {
+        prime_less = i;
+        break;
+    }
+}
+
+// search for the first prime greater than the value
+int prime_greater = -1;
+
+for (int i = value + 1;; i++) {
+    if (isPrime(i)) {
+        prime_greater = i;
+        break;
+    }
+}
+
+// we'll always have a prime greater than the user value
+// check if we have one less than the user value and generate the output
+// according to the distance between the two primes and the value
+if (prime_less != -1) {
+    if ((value - prime_less) == (prime_greater - value)) {
+        println("Closest primes: " + prime_less + " and " + prime_greater);
+    } else if ((value - prime_less) > (prime_greater - value)) {
+        println("Closest prime: " + prime_greater);
+    } else {
+        println("Closest prime: " + prime_less);
+    }
+} else {
+    println("Closest prime: " + prime_greater);
+}
+
+// helper method to check if a number if prime
+boolean isPrime(int value) {
+	if (value > 1) {
+		// to determine if a number is prime we only need to check up to the
+        // square root of the value (faster computation time for large numbers)
+		// note: if the value is 2 the code doesn't enter the loop but that's ok
+		// because the method will return true
+		for (int i = 2; i <= Math.sqrt(value); i++) {
+			if ((value % i) == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
