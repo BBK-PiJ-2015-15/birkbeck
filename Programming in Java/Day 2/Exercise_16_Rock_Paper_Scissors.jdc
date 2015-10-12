@@ -1,0 +1,55 @@
+// 16 Rock, Paper, Scissors
+//
+// 2 players, rock-paper-scissors game.
+//
+
+int score1 = 0;
+int score2 = 0;
+
+while(true) {
+    // ask the user to enter the game result
+    print("Enter the game result: ");
+    String result = readLine();
+
+    if (result.length() != 2) {
+        println("Error: invalid string entered. Try again.");
+        continue;
+    }
+
+    // make lowercase
+    result = result.toLowerCase();
+
+    // check who wins
+    switch (result) {
+    case "rr":
+    case "pp":
+    case "ss":
+        break; // tie
+    case "rs":
+    case "pr":
+    case "sp":
+        score1++; // player 1 wins
+        break;
+    case "sr":
+    case "rp":
+    case "ps":
+        score2++; // player 2 wins
+        break;
+    default:
+        println("Error: invalid sequence entered. Try again.");
+        break;
+    }
+
+    if (score1 >= score2 + 3) {
+        println("Player 1 wins!");
+        break;
+    }
+
+    if (score2 >= score1 + 3) {
+        println("Player 2 wins!");
+        break;
+    }
+}
+
+println("Player 1: " + score1);
+println("Player 2: " + score2);
