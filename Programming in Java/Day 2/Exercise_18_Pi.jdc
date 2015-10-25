@@ -1,0 +1,112 @@
+// 18 Pi
+//
+// Outputs the number pi.
+//
+// Asks the user to enter the number of terms to calculate pi and outputs the
+// result.
+//
+
+// we need better precision than double
+import java.math.BigDecimal;
+
+// ask the user for the number of terms
+long count = 7000000000L;
+
+while (true) {
+    //print("Enter the number of terms: ");
+    //count = readInt();
+
+    // validate input
+    if (count > 0) {
+        break;
+    }
+
+    // invalid number, retry
+    println("Error: please enter a number bigger than 0.");
+}
+
+
+
+BigDecimal pi = new BigDecimal(0);
+BigDecimal ONE = new BigDecimal(1);
+BigDecimal TWO = new BigDecimal(2);
+BigDecimal FOUR = new BigDecimal(4);
+BigDecimal MINUS_FOUR = new BigDecimal(-4);
+BigDecimal term;
+
+//double pi = 0.0f;
+//double term;
+
+boolean got_first_three = false;
+boolean got_first_ten = false;
+boolean got_first_twelve = false;
+
+String string;
+
+// calculate pi
+for (long i = 0; i < count; i++) {
+    term = (i % 2 == 0) ? FOUR : MINUS_FOUR;
+    term = term.divide(TWO.multiply(new BigDecimal(i)).add(ONE), 1000, BigDecimal.ROUND_HALF_UP);
+    pi = pi.add(term);
+
+    string = pi.toString();
+
+    if (!got_first_three && string.substring(0, 4).equals("3.14")) {
+        println("3.14: " + (i + 1) + " terms.");
+        println("Pi: " + string.substring(0, 20));
+        got_first_three = true;
+    }
+
+    if (!got_first_ten && string.substring(0, 11).equals("3.141592653")) {
+        println("3.141592653: " + (i + 1) + " terms.");
+        println("Pi: " + string.substring(0, 20));
+        got_first_ten = true;
+    }
+
+    //term = (i % 2 == 0) ? 4.0f : -4.0f;
+    //term /= 2.0f * i + 1.0f;
+    //pi += term;
+
+    //if (!got_first_three && got(3, pi)) {
+    //    println("3.14: " + (i + 1) + " terms.");
+    //    println("Pi: " + pi);
+    //    got_first_three = true;
+    //}
+
+    //if (!got_first_ten && got(10, pi)) {
+    //if (got(10, pi)) {
+    //    println("3.141592653: " + (i + 1) + " terms.");
+    //    println("Pi: " + pi);
+    //    got_first_ten = true;
+    //}
+
+    //if (!got_first_twelve && got(12, pi)) {
+    //if (got(12, pi)) {
+    //    println("3.14159265358: " + (i + 1) + " terms.");
+    //    println("Pi: " + pi);
+    //    got_first_twelve = true;
+    //}
+}
+
+println("For " + count + " terms pi is: " + pi);
+
+boolean got(int count, double pi) {
+    if (count < 1 || count > 12) {
+        return false;
+    }
+
+    long real_pi = 314159265358L;
+
+    for (int i = 0; i < count; i++) {
+        double mult = Math.pow(10, i);
+        double div = Math.pow(10, 11 - i);
+
+        long a = (long)(pi * mult);
+        long b = (long)(real_pi / div);
+
+        if (a != b) {
+            return false;
+        }
+    }
+    return true;
+}
