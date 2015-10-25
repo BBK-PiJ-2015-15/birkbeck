@@ -1,0 +1,72 @@
+// 3 Command-line calculator.
+//
+// Asks the user for a mathematical operation and then executes it.
+//
+
+while (true) {
+    // ask the user to enter the numbers result
+    print("Enter the operation: ");
+    String operation = readLine().trim();
+
+    // parse the first number
+    int i;
+    for (i = 0; i < operation.length(); i++) {
+        if (!Character.isDigit(operation.charAt(i))) {
+            break;
+        }
+    }
+
+    if (i == 0) {
+        println("Invalid operation, first number not found. Try again.");
+        continue;
+    }
+
+    double number1 = Double.parseDouble(operation.substring(0, i));
+
+    // parse the operator
+    operation = operation.substring(i).trim();
+    if (operation.length() == 0) {
+        println("Invalid operation, no operator found. Try again.");
+        continue;
+    }
+
+    Character operator = operation.charAt(0);
+
+    // parse the second number
+    operation = operation.substring(1).trim();
+    if (operation.length() == 0 || !Character.isDigit(operation.charAt(0))) {
+        println("Invalid operation, second number not found. Try again.");
+        continue;
+    }
+
+    double number2 = Double.parseDouble(operation);
+
+    String opString = "";
+    double result = 0.0f;
+
+    switch (operator) {
+    case '+':
+        opString = " plus ";
+        result = number1 + number2;
+        break;
+    case '-':
+        opString = " minus ";
+        result = number1 - number2;
+        break;
+    case '*':
+        opString = " times ";
+        result = number1 * number2;
+        break;
+    case '/':
+        opString = " divided by ";
+        result = number1 / number2;
+        break;
+    default:
+        println("Invalid operation, invalid operator found. Try again.");
+        break;
+    }
+
+    if (opString.length() > 0) {
+        println(number1 + opString + number2 + " is " + result);
+    }
+}
