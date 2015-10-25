@@ -1,0 +1,61 @@
+// 4 Distance point-to-point
+//
+// Asks the user for three points and calculates which of the three are closer.
+//
+
+Point point1 = new Point(0, 1);
+println("Point 1: " + point1.description());
+
+Point point2 = new Point(10, 10);
+println("Point 2: " + point2.description());
+
+Point point3 = new Point(-10, 1);
+println("Point 3: " + point3.description());
+
+// calculate distances
+double closerDistance = Double.POSITIVE_INFINITY;
+
+// point 1 to 2
+double distance = point1.distance(point2);
+if (distance < closerDistance) {
+    closerDistance = distance;
+}
+
+println("Distance between point 1 and 2: " + distance);
+
+// point 1 to 3
+distance = point1.distance(point3);
+if (distance < closerDistance) {
+    closerDistance = distance;
+}
+
+println("Distance between point 1 and 3: " + distance);
+
+// point 2 to 3
+distance = point2.distance(point3);
+if (distance < closerDistance) {
+    closerDistance = distance;
+}
+
+println("Distance between point 2 and 3: " + distance);
+
+println("\nThe closer distance is: " + closerDistance);
+
+// Point
+class Point {
+    double x;
+    double y;
+
+    Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    String description() {
+        return "(" + this.x + ", " + this.y + ")";
+    }
+
+    double distance(Point point) {
+        return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2));
+    }
+}
