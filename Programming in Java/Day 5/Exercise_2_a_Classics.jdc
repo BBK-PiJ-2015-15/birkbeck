@@ -1,0 +1,42 @@
+// 2.a) Classics, factorial.
+//
+// Calculates the factorial of a number.
+//
+
+// Ask the user to enter an integer
+print("Enter an integer: ");
+int value = readInt();
+
+int method;
+while (true) {
+	println("Choose calculation method:");
+	println("0 - iteratively");
+	println("1 - recursively");
+	print("> ");
+	
+	method = readInt();
+	if (method == 0 || method == 1) {
+		break;
+	}
+	println("Invalid method, try again.");
+}
+
+int factorial;
+if (method == 0) { // Calculate factorial iteratively
+	factorial = 1;
+	for (int i = value; i > 0; i--) {
+		factorial *= i;
+	}
+} else { // Calculate factorial recursively
+	factorial = factorial(value);
+}
+
+println("The factorial of " + value + " is " + factorial);
+
+// Recursive method
+int factorial(int value) {
+	if (value == 1) {
+		return 1;
+	}	
+	return value * factorial(value - 1);
+}

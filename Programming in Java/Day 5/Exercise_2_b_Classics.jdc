@@ -1,0 +1,57 @@
+// 2.a) Classics, fibonacci.
+//
+// Calculates the nth element of the fibonacci sequence.
+//
+
+// Ask the user to enter the index
+print("Enter the index: ");
+int index = readInt();
+
+int method;
+while (true) {
+	println("Choose calculation method:");
+	println("0 - iteratively");
+	println("1 - recursively");
+	print("> ");
+	
+	method = readInt();
+	if (method == 0 || method == 1) {
+		break;
+	}
+	println("Invalid method, try again.");
+}
+
+int fibonacci;
+if (method == 0) { // Iterative
+	fibonacci = fibonacci_i(index);
+} else { // Recursive
+	fibonacci = fibonacci_r(index);
+}
+println("The element is: " + fibonacci);
+
+// Recursive method
+int fibonacci_r(int index) {
+	if (index < 3) {
+		return 1;
+	}
+	return fibonacci_r(index - 1) + fibonacci_r(index - 2); 
+}
+
+// Iterative method
+int fibonacci_i(int index) {
+	if (index < 3) {
+		return 1;
+	}
+	
+	int fib_minus1 = 1;
+	int fib_minus2 = 1;
+	int fibonacci = 0;
+	
+	//  1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+	for (int i = 2; i < index; i++) {
+		fibonacci = fib_minus1 + fib_minus2;		
+		fib_minus2 = fib_minus1;
+		fib_minus1 = fibonacci;
+	}
+	return fibonacci;
+}
