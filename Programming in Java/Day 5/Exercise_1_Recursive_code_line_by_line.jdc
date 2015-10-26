@@ -1,0 +1,36 @@
+// 1 Recursive code, line by line
+//
+// 
+//
+
+// 1.a)
+
+printNumbers(6);
+
+void printNumbers(int n) {
+	if (n <= 0) {
+		return;
+	}
+	println(n);
+	printNumbers(n-2);
+	printNumbers(n-3);
+	println(n);
+}
+
+
+// 1.b) Infinite recursion for odd numbers, negative numbers and for zero.
+//
+//String buggyMethod(int n) {
+//	if (n == 0) {
+//		return "";
+//	}
+//	return n + " " + buggyMethod(n - 2);
+//}
+
+// Fixed method
+String fixedMethod(int n) {
+	if (n <= 0) {
+		return "";
+	}
+	return n + " " + fixedMethod(n - 2);
+}
