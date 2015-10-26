@@ -1,0 +1,19 @@
+// 2.c) Classics, hanoi towers.
+//
+// Calculates the number of moves necessary to move a set of n Hanoi disks.
+//
+
+// Ask the user to enter the index
+print("Enter the number of disks: ");
+int count = readInt();
+
+int moves = hanoiMoves(count);
+println("The number of moves needed is: "  + moves);
+
+// Calculate number of moves recursively
+int hanoiMoves(int count) {
+	if (count == 1) {
+		return 1;
+	}
+	return hanoiMoves(count - 1) * 2 + 1;
+}
