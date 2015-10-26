@@ -1,0 +1,23 @@
+// 1.b) Recursive code, line by line
+//
+// Recursion example. Should print:
+// 6 4 2 2 1 1 4 3 1 1 3 6
+//
+
+println(fixedMethod(1));
+
+// Bug: infinite recursion for odd numbers and negative numbers.
+//String buggyMethod(int n) {
+//	if (n == 0) {
+//		return "";
+//	}
+//	return n + " " + buggyMethod(n - 2);
+//}
+
+// Fixed method
+String fixedMethod(int n) {
+	if (n <= 0) {
+		return "";
+	}
+	return n + " " + fixedMethod(n - 2);
+}
